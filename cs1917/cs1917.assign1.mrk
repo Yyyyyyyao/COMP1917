@@ -1,0 +1,942 @@
+
+!!section banner
+#######   ###    #####   #####     #     #####  #######
+#        #   #  #     # #     #   ##    #     # #
+#       # #   # #     #       #  # #    #     # #
+ #####  #  #  #  ######  #####     #     ######  #####
+      # #   # #       # #          #          #       #
+#     #  #   #  #     # #          #    #     # #     #
+ #####    ###    #####  #######  #####   #####   #####
+
+5092195 Yuan, Yao                               3707/1 COMPBH
+
+Submissions:-
+
+S 0     Tue Aug 30 16:45:01 2016        5092195 mon13-sitar assign1 -5:-7
+
+Wed Aug 31 00:01:22 2016                ## wagner.orchestra.cse.unsw.EDU.AU ##
+!!section listing
+-rw-r----- z5092195/z5092195 9546 2016-08-30 16:44 assign1.c
+**--------------**
+!!tests being run on -- wagner (pc.i86.linux) ---
+
+
+===============================================================================
+-rw-r----- 1 cs1917 cs1917 9506 Aug 31 00:01 assign1.c
+===============================================================================
+
+     1  #include <stdio.h>
+     2  #include <stdlib.h>
+     3  #include <math.h>
+     4  void Dicevalue(char value[]);
+             ^
+             + ===================== +
+             + function names should +
+             + starts w/ a lowercase +
+             + letter and each       +
+             + subsequent word       +
+             + w/ a capital (i.e.    +
+             + diceValue)            +
+             + ===================== +
+     5  int Format(char num[], int *pri);
+     6  void Range(char num[], int *pri, int len);
+     7  void NumberOfValue(int num, int *pri);
+     8  int Check(int a, int b, int c);
+     9  int Valuation(char value[], int score[]);
+    10  int Rollalldice(char dicebox[]);
+    11  int Rollsomedice(char dicebox[]);
+    12  void Choice(int choose, char array2[]);
+    13  int main(int argc, char *argv[]){
+    14     char dicebox[200];
+                        ^
+                        + =============== +
+                        + magic numbers!! +
+                        + =============== +
+    15     int check;
+    16     check = Rollalldice(dicebox);
+    17     if(check != 1){
+    18          printf("\n");
+    19          Dicevalue(dicebox);
+    20          printf("\n");
+    21          int times = 2;
+    22          int check2 = 0;
+    23          int check3 = 0;
+    24          int check4 = 0;
+                         ^
+                         + ================================= +
+                         + what does this mean               +
+                         + variables need to have            +
+                         + meaningful names related to their +
+                         + purpose                           +
+                         + ================================= +
+    25       while(times > 0){
+             ^
+             + ============= +
+             + indentation!! +
+             + ============= +
+    26                printf("Please choose:\n");
+    27                printf(" 1 -> Reroll some dice\n");
+    28                printf(" 2 -> Reroll all dice\n");
+    29                printf(" 3 -> Keep dice\n");
+    30
+    31                char array2[200];
+    32                int d = 0;
+    33
+    34                Format(array2, &d);
+    35                int e =(int)array2[0];
+    36
+    37
+    38                if(e != 49 && e != 50 && e != 51){
+    39                   printf("Invalid Choice.\n");
+    40                   check4 = 1;
+    41                   times= 0;
+    42                }
+    43           if(check4 != 1){
+                  ^
+                  + ============= +
+                  + indentation!! +
+                  + ============= +
+    44                 if(e == 49){
+                                ^
+                                + === +
+                                + '0' +
+                                + === +
+    45                    printf("\n");
+    46                    check2 = Rollsomedice(dicebox);
+    47                    if(check2 == 1){
+    48                       times = 0;
+    49                    }else {
+    50                       times = times  -1;
+    51                    }
+    52                 }
+    53                 if(e == 50){
+    54                    printf("\n");
+    55                    check3 = Rollalldice(dicebox);
+    56                    if(check3 == 1){
+    57                       times = 0;
+    58                    }else{
+    59                     printf("\n");
+    60                     Dicevalue(dicebox);
+    61                     printf("\n");
+    62                     times = times - 1;
+    63                    }
+    64                 }
+    65                 if(e == 51){
+                       ^
+                       + ========== +
+                       + else if... +
+                       + ========== +
+    66                    times = 0;
+    67                 }
+    68           }
+    69
+    70       }
+    71       if(check2 != 1 && check3 != 1 && check4 != 1){
+             ^
+             + ==================== +
+             + comments -- what is  +
+             + going on - i can't   +
+             + understand your code +
+             + w/o comments :(      +
+             + ==================== +
+    72          int score[200];
+    73          int y = 0;
+    74           int check5 = 0;
+    75          y = Valuation(dicebox, score);
+    76
+    77          char array5[200];
+                     ^
+                     + ==================== +
+                     + what does this mean? +
+                     + what is it holding?  +
+                     + ==================== +
+    78          int f = 0;
+    79
+    80          Format(array5, &f);
+                                ^
+                                + ====================== +
+                                + why do u pass in       +
+                                + a pointer to f if      +
+                                + f is never used again? +
+                                + ====================== +
+    81          int g =(int)array5[0];
+    82          g = g - 48;
+    83
+    84              if(g > y || g  == 0){
+    85              printf("Invalid Choice.\n");
+    86              check5 = 1;
+    87              }
+    88          if(check5 != 1){
+    89              printf("\n");
+    90              printf("Your score is: %d points\n", score[array5[0] - 48]);
+    91          }
+    92       }
+    93
+    94   }
+    95
+    96     return EXIT_SUCCESS;
+    97  }
+    98  int Rollalldice(char dicebox[]){
+            ^
+            + ===================================================== +
+            + you need a comment to explain what your function does +
+            + ===================================================== +
+    99     printf("Please enter dice values:\n");
+   100     int a = 0;//priority 1
+   101     int b = 0;//priority 2
+   102     int c = 0;//priority 3
+   103     int check;
+   104     int number = Format(dicebox, &a);
+   105     Range(dicebox, &b, number);
+   106     NumberOfValue(number, &c);
+   107     check = Check(a, b, c);
+   108     return check;
+   109
+   110  }
+   111  int Rollsomedice(char dicebox[]){
+   112
+   113        printf("Please enter dice to reroll (1 - 5):\n");
+   114        char array3[200];
+   115        int f = 0;//priority
+   116        int g = 0;//priority
+   117        int h = 0;//the number of values needed to be changed
+   118        int p = 0;
+   119        int check2=0;
+   120
+   121        h = Format(array3, &f);
+   122        Range(array3, &g, h);
+   123        if(f == 1){
+   124           printf("Incorrect Input Format.\n");
+   125           check2 = 1;
+   126        }else if(g == 1){
+   127           printf("Dice Number Out of Range.\n");
+   128           check2 = 1;
+   129        }
+   130        if(check2 != 1){
+   131        //the same dice condition
+   132        //place them in order.
+   133       int a = 0;
+   134       int k;
+   135       int temp;
+   136       while(a < h){
+   137          k = 1;
+   138          while((a + k) < h){
+   139             if(array3[a] > array3[a + k]){
+   140                temp = array3[a];
+   141                array3[a] = array3[a + k];
+   142                array3[a + k] = temp;
+   143                k++;
+   144             }else{
+   145                k++;
+   146             }
+   147          }
+   148         a++;
+   149       }
+   150
+   151         int i = 0;
+   152         int count = 0;
+   153         while(i < h-1){
+   154            if(array3[i] != array3[i + 1]){
+   155                  count++;
+   156            }
+   157            i++;
+   158         }
+   159         p = count + 1;
+   160
+   161        printf("\n");
+   162        if(p == 1){
+   163            printf("Please enter %d value:\n", p);
+   164        }
+   165        if(p > 1){
+   166           printf("Please enter %d values:\n", p);
+   167        }
+   168        char array4[200]={0};
+   169
+   170        int l = 0;//priority 1
+   171        int m = 0;//priority 2
+   172        int n = 0;
+   173        int num = 0;
+   174        num = Format(array4, &l);
+   175        Range(array4, &m, num);
+   176        if(num!= p){
+   177                   n= 1;
+   178        }
+   179        check2 = Check(l, m ,n);
+   180
+   181         /*if(l == 1){
+   182           printf("incorrect Input Format.\n");
+   183           check2 = 1;
+   184        }else if(m == 1){
+   185           printf("Dice Number Out of Range.\n");
+   186           check2 = 1;
+   187        }*/
+   188        if(check2 != 1){
+   189        int o = 0;
+   190        int q = 0;
+   191        while(o < h){
+   192             if(array3[o] != array3[o + 1] && array3[o] >= 49 && array3[o] <= 54 && q < p){
+   193                dicebox[array3[o]-'0' - 1] = array4[q];
+   194                 o++;
+   195                 q++;
+   196             }else{
+   197               o++;
+   198             }
+   199        }
+   200        printf("\n");
+   201        Dicevalue(dicebox);
+   202        printf("\n");
+   203        }
+   204        }
+   205        return check2;
+   206  }
+   207  void Dicevalue(char value[]){
+   208     int i = 0;
+   209     printf("Your dice values are: ");
+   210     while(i<5){
+   211        printf("%c ", value[i]);
+   212        i++;
+   213     }
+   214     printf("\n");
+   215  }
+   216  int Format(char num[], int *pri){
+   217     int i = 0;
+   218     int j = 0;
+   219     int a = 0;
+   220     int b = 0;
+   221     int k = 0;
+   222     char value;
+   223     char arrtemp[200];
+   224     while((value = getchar()) != 10){
+   225          k = (char)value;
+   226          arrtemp[i] = k;
+   227          i++;
+   228     }
+   229
+   230     while(b < i){
+   231          if(arrtemp[b] >= '0' && arrtemp[b] <= '9'){
+   232                  num[j] = arrtemp[b];
+   233                  a++;//count how many numbers have been entered in dicebox;
+   234                  j++;
+   235                  b++;
+   236                  if(i-1 != 1 && b!= i){
+   237                          if(arrtemp[b] != ' '){
+   238                                  *pri = 1;
+   239                          }
+   240                  }
+   241          }
+   242          b++;
+   243     }
+   244
+   245
+   246     return a;
+   247  }
+   248  void Choice(int choose, char array2[]){
+   249
+   250      while(choose != EOF){
+   251          if(choose >= '1' && choose <= '9'){
+   252              array2[0] = choose;
+   253          }else if(choose == ' '){
+   254              choose = getchar();
+   255          }else {
+   256              choose = EOF;
+   257          }
+   258          choose = EOF;
+   259      }
+   260  }
+   261  void Range(char num[], int *pri, int len){
+                                    ^
+                                    + ============ +
+                                    + couldn't you +
+                                    + return this? +
+                                    + ============ +
+   262     int k = 0;
+   263     int a;
+   264     while(k < len){
+   265      a = (int)num[k];
+   266       if(a >= 48 && a <= 57){
+   267          if(a >= 49 && a <= 54){
+   268          }else{
+   269            *pri = 1;
+   270          }
+   271       }else{
+              ^
+              + =============== +
+              + else {} doesn't +
+              + do anything...  +
+              + =============== +
+   272       }
+   273     k = k + 1;
+   274     }
+   275  }
+   276  void NumberOfValue(int num, int *pri){
+   277     if(num != 5){
+   278
+   279       *pri = 1;
+   280     }
+   281  }
+   282  int Check(int a, int b, int c){
+   283
+   284     int i = 0;
+   285     if(a == 1){
+   286        printf("Incorrect Input Format.\n");
+   287        i = 1;
+   288     }else if(b == 1){
+   289        printf("Value Out of Range.\n");
+   290        i = 1;
+   291     }else if(c == 1){
+   292        printf("Incorrect Number of Values.\n");
+   293        i = 1;
+   294     }
+   295     return i;
+   296  }
+   297  int Valuation(char value[], int score[]){
+   298      int n1 = 0;
+                ^
+                + ===================================== +
+                + this would be done better as an array +
+                + ===================================== +
+   299      int n2 = 0;
+   300      int n3 = 0;
+   301      int n4 = 0;
+   302      int n5 = 0;
+   303      int n6 = 0;
+   304      int y = 1;
+   305      int i = 0;
+   306      while(i < 5){
+   307         if(value[i] == '1'){
+   308            n1 = n1 + 1;
+   309            i++;
+   310         }
+   311         if(value[i] == '2'){
+   312            n2 = n2 + 1;
+   313            i++;
+   314         }
+   315         if(value[i] == '3'){
+   316            n3 = n3 + 1;
+   317            i++;
+   318         }
+   319         if(value[i] == '4'){
+   320            n4 = n4 + 1;
+   321            i++;
+   322         }
+   323         if(value[i] == '5'){
+   324            n5 = n5 + 1;
+   325            i++;
+   326         }
+   327         if(value[i] == '6'){
+   328            n6 = n6 + 1;
+   329            i++;
+   330         }
+   331      }
+   332       int sum = 0;
+   333       int num = 0;
+   334       while(num < 5){
+   335       sum = value[num] - 48 + sum;
+   336       num++;
+   337       }
+   338       printf("\nYour score options are:\n");
+   339       if(n1 > 2 || n2 > 2 || n3 > 2 || n4 > 2 || n5 > 2 || n6 > 2){
+   340          printf(" %d -> Three of a Kind (%d points)\n", y, sum);
+   341          score[y]=sum;
+   342          y++;
+   343           if(n1 > 3 || n2 > 3 || n3 > 3 || n4 > 3 || n5 > 3 || n6 > 3){
+   344              printf(" %d -> Four of a Kind (%d points)\n", y, sum);
+   345              score[y] = sum;
+   346              y++;
+   347               if(n1 > 4 || n2 > 4 || n3 > 4 || n4 > 4 || n5 > 4 || n6 > 4){
+   348                 printf(" %d -> Yahtzee (50 points)\n", y);
+   349                 score[y] = 50;
+   350                 y++;
+   351               }
+   352           }
+   353          if(n1 == 2 || n2 == 2 || n3 == 2 || n4 == 2 || n5 == 2 || n6 == 2){
+   354             printf(" %d -> Full House (25 points)\n", y);
+   355             score[y] = 25;
+   356             y++;
+   357          }
+   358       }
+   359       //place array in order
+   360       int a = 0;
+   361       int k;
+   362       int temp;
+   363       while(a < 5){
+   364          k = 1;
+   365          while((a + k) < 5){
+   366             if(value[a] > value[a + k]){
+   367                temp = value[a];
+   368                value[a] = value[a + k];
+   369                value[a + k] = temp;
+   370                k++;
+   371             }else{
+   372                k++;
+   373             }
+   374          }
+   375         a++;
+   376       }
+   377
+   378       int e = 0;
+   379       int count = 0;
+   380       while(e < 4){
+   381          if(value[e] + 1 == value[e + 1]){
+   382             count++;
+   383          }else if(count != 3 && value[e] + 1 != value[e + 1]){
+   384                  count = 0;
+   385          }
+   386
+   387       e++;
+   388       }
+   389       count = count + 1;
+   390
+   391
+   392       if(count > 3){
+   393          printf(" %d -> Small Straight (30 points)\n", y);
+   394          score[y] = 30;
+   395          y++;
+   396          if(count > 4){
+   397             printf(" %d -> Straight (40 points)\n", y);
+   398             score[y] = 40;
+   399             y++;
+   400          }
+   401       }
+   402
+   403       printf(" %d -> Chance (%d points)\n",y, sum);
+   404       score[y] = sum;
+   405       return y;
+   406  }
+
+
+----------
+!!section tests
+** Test 1: Stage 1: Incorrect Input Format error
+--------------------------------
+** Test passed
+--------------------------------
+** Test 2: Stage 1: Incorrect Input Format error
+--------------------------------
+** Test passed
+--------------------------------
+** Test 3: Stage 1: Incorrect Input Format error
+--------------------------------
+** Test passed
+--------------------------------
+** Test 4: Stage 1: Value Out of Range error
+--------------------------------
+** Test passed
+--------------------------------
+** Test 5: Stage 1: Value Out of Range error
+--------------------------------
+** Test passed
+--------------------------------
+** Test 6: Stage 1: Value Out of Range error
+--------------------------------
+** Test passed
+--------------------------------
+** Test 7: Stage 1: Incorrect Number of Values error
+--------------------------------
+** Test passed
+--------------------------------
+** Test 8: Stage 1: Incorrect Number of Values error
+--------------------------------
+** Test passed
+--------------------------------
+** Test 9: Stage 1: Incorrect Number of Values error
+--------------------------------
+** Test passed
+--------------------------------
+** Test 10: Stage 1: Invalid Choice error
+--------------------------------
+** Test passed
+--------------------------------
+** Test 11: Stage 1: Invalid Choice error
+--------------------------------
+** Test passed
+--------------------------------
+** Test 12: Stage 1: Invalid Choice error
+--------------------------------
+** Test passed
+--------------------------------
+** Test 13: Stage 1: Invalid Choice error
+--------------------------------
+** Test passed
+--------------------------------
+** Test 14: Stage 1: Invalid Choice error
+--------------------------------
+** Test passed
+--------------------------------
+** Test 15: Stage 1: Invalid Choice error
+--------------------------------
+** Test passed
+--------------------------------
+** Test 16: Stage 1: Three of a Kind
+--------------------------------
+** Test passed
+--------------------------------
+** Test 17: Stage 1: Three of a Kind
+--------------------------------
+** Test passed
+--------------------------------
+** Test 18: Stage 1: Four of a Kind
+--------------------------------
+** Test passed
+--------------------------------
+** Test 19: Stage 1: Four of a Kind
+--------------------------------
+** Test passed
+--------------------------------
+** Test 20: Stage 1: Four of a Kind
+--------------------------------
+** Test passed
+--------------------------------
+** Test 21: Stage 1: Full House
+--------------------------------
+** Test passed
+--------------------------------
+** Test 22: Stage 1: Full House
+--------------------------------
+** Test passed
+--------------------------------
+** Test 23: Stage 1: Full House
+--------------------------------
+** Test passed
+--------------------------------
+** Test 24: Stage 1: Small Straight
+--------------------------------
+** Test passed
+--------------------------------
+** Test 25: Stage 1: Small Straight
+--------------------------------
+** Test passed
+--------------------------------
+** Test 26: Stage 1: Straight
+--------------------------------
+** Test passed
+--------------------------------
+** Test 27: Stage 1: Straight
+--------------------------------
+** Test passed
+--------------------------------
+** Test 28: Stage 1: Straight
+--------------------------------
+** Test passed
+--------------------------------
+** Test 29: Stage 1: Yahtzee
+--------------------------------
+** Test passed
+--------------------------------
+** Test 30: Stage 1: Yahtzee
+--------------------------------
+** Test passed
+--------------------------------
+** Test 31: Stage 1: Yahtzee
+--------------------------------
+** Test passed
+--------------------------------
+** Test 32: Stage 1: Yahtzee
+--------------------------------
+** Test passed
+--------------------------------
+** Test 33: Stage 1: Yahtzee
+--------------------------------
+** Test passed
+--------------------------------
+** Test 34: Stage 1: Chance
+--------------------------------
+** Test passed
+--------------------------------
+** Test 35: Stage 1: Chance
+--------------------------------
+** Test passed
+--------------------------------
+** Test 36: Stage 1: Three of a Kind
+--------------------------------
+** Test passed
+--------------------------------
+** Test 37: Stage 1: Three of a Kind
+--------------------------------
+** Test passed
+--------------------------------
+** Test 38: Stage 1: Four of a Kind
+--------------------------------
+** Test passed
+--------------------------------
+** Test 39: Stage 1: Four of a Kind
+--------------------------------
+** Test passed
+--------------------------------
+** Test 40: Stage 1: Full House
+--------------------------------
+** Test passed
+--------------------------------
+** Test 41: Stage 1: Full House
+--------------------------------
+** Test passed
+--------------------------------
+** Test 42: Stage 1: Full House
+--------------------------------
+** Test passed
+--------------------------------
+** Test 43: Stage 1: Full House
+--------------------------------
+** Test passed
+--------------------------------
+** Test 44: Stage 1: Small Straight
+--------------------------------
+** Test passed
+--------------------------------
+** Test 45: Stage 1: Small Straight
+--------------------------------
+** Test passed
+--------------------------------
+** Test 46: Stage 1: Small Straight
+--------------------------------
+** Test passed
+--------------------------------
+** Test 47: Stage 1: Straight
+--------------------------------
+** Test passed
+--------------------------------
+** Test 48: Stage 1: Straight
+--------------------------------
+** Test passed
+--------------------------------
+** Test 49: Stage 1: Yahtzee
+--------------------------------
+** Test passed
+--------------------------------
+** Test 50: Stage 1: Yahtzee
+--------------------------------
+** Test passed
+--------------------------------
+** Test 51: Stage 2: Incorrect Input Format error (rerolling all)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 52: Stage 2: Incorrect Input Format error (rerolling all + rerolling all)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 53: Stage 2: Value Out of Range error (rerolling all)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 54: Stage 2: Incorrect Number of Values error (rerolling some + rerolling all)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 55: Stage 2: Incorrect Input Format error (rerolling some)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 56: Stage 2: Incorrect Input Format error (rerolling all + rerolling some)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 57: Stage 2: Value Out of Range error (rerolling some)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 58: Stage 2: Incorrect Number of Values error (rerolling some + rerolling some)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 59: Stage 2: Incorrect Input Format error (rerolling some)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 60: Stage 2: Dice Number Out of Range error (rerolling all + rerolling some)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 61: Stage 2: Three of a Kind (rerolling all)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 62: Stage 2: Three of a Kind (rerolling all + rerolling all)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 63: Stage 2: Three of a Kind (rerolling some + rerolling all)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 64: Stage 2: Four of a Kind (rerolling all)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 65: Stage 2: Four of a Kind (rerolling some)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 66: Stage 2: Four of a Kind (rerolling some + rerolling some)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 67: Stage 2: Full House (rerolling all + rerolling all)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 68: Stage 2: Full House (rerolling all + rerolling some)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 69: Stage 2: Full House (rerolling some + rerolling all)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 70: Stage 2: Small Straight (rerolling some)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 71: Stage 2: Small Straight (rerolling all + rerolling all)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 72: Stage 2: Small Straight (rerolling some + rerolling some)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 73: Stage 2: Straight (rerolling all)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 74: Stage 2: Straight (rerolling all + rerolling some)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 75: Stage 2: Straight (rerolling some + rerolling all)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 76: Stage 2: Yahtzee (rerolling some)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 77: Stage 2: Yahtzee (rerolling some + rerolling some)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 78: Stage 2: Yahtzee (rerolling all + rerolling some)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 79: Stage 2: Chance (rerolling all + rerolling some)
+--------------------------------
+** Test passed
+--------------------------------
+** Test 80: Stage 2: Chance (rerolling some)
+--------------------------------
+** Test passed
+--------------------------------
+!!section assess
+
+!!perftab       ** PERFORMANCE ANALYSIS **
+
+Test  1 (0.1)   Stage 1: Incorrect Input Format error   ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test  2 (0.1)   Stage 1: Incorrect Input Format error   ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test  3 (0.1)   Stage 1: Incorrect Input Format error   ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test  4 (0.1)   Stage 1: Value Out of Range error   ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test  5 (0.1)   Stage 1: Value Out of Range error   ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test  6 (0.1)   Stage 1: Value Out of Range error   ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test  7 (0.1)   Stage 1: Incorrect Number of Values error   ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test  8 (0.1)   Stage 1: Incorrect Number of Values error   ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test  9 (0.1)   Stage 1: Incorrect Number of Values error   ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 10 (0.1)   Stage 1: Invalid Choice error   ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 11 (0.1)   Stage 1: Invalid Choice error   ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 12 (0.1)   Stage 1: Invalid Choice error   ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 13 (0.1)   Stage 1: Invalid Choice error   ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 14 (0.1)   Stage 1: Invalid Choice error   ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 15 (0.1)   Stage 1: Invalid Choice error   ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 16 (0.1)   Stage 1: Three of a Kind .  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 17 (0.1)   Stage 1: Three of a Kind .  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 18 (0.1)   Stage 1: Four of a Kind ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 19 (0.1)   Stage 1: Four of a Kind ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 20 (0.1)   Stage 1: Four of a Kind ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 21 (0.1)   Stage 1: Full House ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 22 (0.1)   Stage 1: Full House ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 23 (0.1)   Stage 1: Full House ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 24 (0.1)   Stage 1: Small Straight ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 25 (0.1)   Stage 1: Small Straight ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 26 (0.1)   Stage 1: Straight   ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 27 (0.1)   Stage 1: Straight   ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 28 (0.1)   Stage 1: Straight   ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 29 (0.1)   Stage 1: Yahtzee .  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 30 (0.1)   Stage 1: Yahtzee .  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 31 (0.1)   Stage 1: Yahtzee .  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 32 (0.1)   Stage 1: Yahtzee .  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 33 (0.1)   Stage 1: Yahtzee .  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 34 (0.1)   Stage 1: Chance ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 35 (0.1)   Stage 1: Chance ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 36 (0.1)   Stage 1: Three of a Kind .  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 37 (0.1)   Stage 1: Three of a Kind .  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 38 (0.1)   Stage 1: Four of a Kind ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 39 (0.1)   Stage 1: Four of a Kind ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 40 (0.1)   Stage 1: Full House ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 41 (0.1)   Stage 1: Full House ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 42 (0.1)   Stage 1: Full House ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 43 (0.1)   Stage 1: Full House ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 44 (0.1)   Stage 1: Small Straight ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 45 (0.1)   Stage 1: Small Straight ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 46 (0.1)   Stage 1: Small Straight ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 47 (0.1)   Stage 1: Straight   ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 48 (0.1)   Stage 1: Straight   ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 49 (0.1)   Stage 1: Yahtzee .  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 50 (0.1)   Stage 1: Yahtzee .  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 51 (0.1)   Stage 2: Incorrect Input Format error (rerolling all)   ..  ..  ..  ..  ..  ..  !!PASSed
+Test 52 (0.1)   Stage 2: Incorrect Input Format error (rerolling all + rerolling all)   ..  ..  !!PASSed
+Test 53 (0.1)   Stage 2: Value Out of Range error (rerolling all)   ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 54 (0.1)   Stage 2: Incorrect Number of Values error (rerolling some + rerolling all)  ..  !!PASSed
+Test 55 (0.1)   Stage 2: Incorrect Input Format error (rerolling some)  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 56 (0.1)   Stage 2: Incorrect Input Format error (rerolling all + rerolling some)  ..  ..  !!PASSed
+Test 57 (0.1)   Stage 2: Value Out of Range error (rerolling some)  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 58 (0.1)   Stage 2: Incorrect Number of Values error (rerolling some + rerolling some) ..  !!PASSed
+Test 59 (0.1)   Stage 2: Incorrect Input Format error (rerolling some)  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 60 (0.1)   Stage 2: Dice Number Out of Range error (rerolling all + rerolling some) .  ..  !!PASSed
+Test 61 (0.1)   Stage 2: Three of a Kind (rerolling all) .  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 62 (0.1)   Stage 2: Three of a Kind (rerolling all + rerolling all) .  ..  ..  ..  ..  ..  !!PASSed
+Test 63 (0.1)   Stage 2: Three of a Kind (rerolling some + rerolling all)   ..  ..  ..  ..  ..  !!PASSed
+Test 64 (0.1)   Stage 2: Four of a Kind (rerolling all) ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 65 (0.1)   Stage 2: Four of a Kind (rerolling some) .  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 66 (0.1)   Stage 2: Four of a Kind (rerolling some + rerolling some)   ..  ..  ..  ..  ..  !!PASSed
+Test 67 (0.1)   Stage 2: Full House (rerolling all + rerolling all) ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 68 (0.1)   Stage 2: Full House (rerolling all + rerolling some) .  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 69 (0.1)   Stage 2: Full House (rerolling some + rerolling all) .  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 70 (0.1)   Stage 2: Small Straight (rerolling some) .  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 71 (0.1)   Stage 2: Small Straight (rerolling all + rerolling all) ..  ..  ..  ..  ..  ..  !!PASSed
+Test 72 (0.1)   Stage 2: Small Straight (rerolling some + rerolling some)   ..  ..  ..  ..  ..  !!PASSed
+Test 73 (0.1)   Stage 2: Straight (rerolling all)   ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 74 (0.1)   Stage 2: Straight (rerolling all + rerolling some)  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 75 (0.1)   Stage 2: Straight (rerolling some + rerolling all)  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 76 (0.1)   Stage 2: Yahtzee (rerolling some)   ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 77 (0.1)   Stage 2: Yahtzee (rerolling some + rerolling some)  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 78 (0.1)   Stage 2: Yahtzee (rerolling all + rerolling some)   ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 79 (0.1)   Stage 2: Chance (rerolling all + rerolling some) .  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+Test 80 (0.1)   Stage 2: Chance (rerolling some) .  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  !!PASSed
+
+!!perfmark      ** TOTAL PERFORMANCE MARK:    8/8
+
+!!marktab       **  MARKER'S  ASSESSMENT  **
+
+                                style  (2)      0.7
+ ^
+ + ====================== +
+ + magic numbers:    -0.5 +
+ + indentation:      -0.5 +
+ + comments:         -0.3 +
+ + ---------------------- +
+ + total: 2.0 - 1.3 = 0.7 +
+ + ====================== +
+
+!!finalmark     **  FINAL  ASSIGNMENT  MARK:    8.7/10
+
+5092195 Yuan, Yao                               3707/1 COMPBH
+
+
+
+
+
+
+
+
+
+Marked by z5061930 on Mon Sep 19 23:23:06 2016
+
